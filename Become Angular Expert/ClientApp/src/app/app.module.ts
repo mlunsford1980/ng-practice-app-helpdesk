@@ -12,6 +12,10 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { IssuesComponent } from './issues/issues.component';
 import { IssuesGridComponent } from './issues-grid/issues-grid.component';
 import { CreateIssueComponent } from './create-issue/create-issue.component';
+import { CanDeactivateCreateIssue } from './create-issue/CanDeactivateCreateIssue';
+import { DialogComponent } from './dialog/dialog.component';
+import { DialogService } from './dialog/dialog.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,8 @@ import { CreateIssueComponent } from './create-issue/create-issue.component';
     FetchDataComponent,
     IssuesComponent,
     IssuesGridComponent,
-    CreateIssueComponent
+    CreateIssueComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -33,9 +38,12 @@ import { CreateIssueComponent } from './create-issue/create-issue.component';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'issues', component: IssuesComponent },
-    ])
+      { path: 'issues/create', component: CreateIssueComponent, canDeactivate: [CanDeactivateCreateIssue] },
+    ]),
+    NgbModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [CanDeactivateCreateIssue, DialogService],
+  bootstrap: [AppComponent],
+  entryComponents: [DialogComponent]
 })
 export class AppModule { }

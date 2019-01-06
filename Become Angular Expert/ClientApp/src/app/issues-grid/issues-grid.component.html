@@ -1,0 +1,30 @@
+<header>{{ title }}</header>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li *ngFor="let page of pages" class="page-item" [class.active]="page.isCurrent"><a class="page-link" (click)="loadPage(page.pageNumber)">{{ page.pageNumber }}</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+
+<table class="table table-striped" *ngIf="issues">
+  <thead>
+    <tr>
+      <th>Assignee</th>
+      <th>Reviewer</th>
+      <th>Description</th>
+      <th>DueDate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="!issues">
+      <td colspan="4">There are no issues to display.</td>
+    </tr>
+    <tr *ngFor="let issue of issues">
+      <td>{{ issue.assignee.fullname }}</td>
+      <td>{{ issue.reviewer.fullname }}</td>
+      <td>{{ issue.description }}</td>
+      <td>{{ issue.dueDate | date:'shortDate' }}</td>
+    </tr>
+  </tbody>
+</table>

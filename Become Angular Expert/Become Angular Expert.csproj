@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\create-issue\CanDeactivateCreateIssue.ts" />
+    <None Remove="ClientApp\src\app\create-issue\can-deactivate-create-issue.ts" />
     <None Remove="ClientApp\src\app\issues-grid\page.model.ts" />
     <None Remove="ClientApp\src\app\issues\issue.model.ts" />
     <None Remove="ClientApp\src\app\issues\name.model.ts" />
@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\create-issue\CanDeactivateCreateIssue.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\create-issue\can-deactivate-create-issue.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\issues-grid\page.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\issues\issue.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\issues\name.model.ts" />

@@ -1,8 +1,8 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, Input } from '@angular/core';
 import { Issue } from '../issues/issue.model';
 import { Page } from './page.model';
 import { ActivatedRoute } from '@angular/router';
+import { IssuesService } from '../issues/issues.service';
 
 @Component({
   selector: 'issues-grid',
@@ -18,12 +18,12 @@ export class IssuesGridComponent implements OnInit {
   pages: Page[] = [];
   pageNumber: number;
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private route: ActivatedRoute) {
+  constructor(private issuesService: IssuesService) {
     this.loadPage(1);
   }
 
   loadPage(pageNumber: number) {
-    this.http.get<Issue[]>(this.baseUrl + 'api/issues/?pageNumber=' + pageNumber, { observe: 'response' })
+    this.issuesService.getIssues(pageNumber)
       .subscribe(result => {
         let totalPagesHeader = result.headers.get('x-total-pages');
         this.totalPages = parseInt(totalPagesHeader);

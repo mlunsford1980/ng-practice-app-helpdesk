@@ -32,17 +32,17 @@
     <None Remove="ClientApp\src\app\issues-grid\page.model.ts" />
     <None Remove="ClientApp\src\app\issues\issue.model.ts" />
     <None Remove="ClientApp\src\app\issues\name.model.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
+    <None Remove="ClientApp\src\app\models\page.model.ts" />
+    <None Remove="ClientApp\src\app\models\project.model.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\create-issue\can-deactivate-create-issue.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\issues-grid\page.model.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\issues\issue.model.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\issues\name.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\issue.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\name.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\page.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\project.model.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

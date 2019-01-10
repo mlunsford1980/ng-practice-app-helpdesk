@@ -1,17 +1,22 @@
 <h1>New Issue</h1>
 <form class="form" #f="ngForm" (ngSubmit)="submit(f)">
   <div class="form-group">
+    <label for="project">Project</label>
+    <select ngModel #project="ngModel" class="form-control" name="projectId" id="projectId" (change)="loadProjectData(project.value)" required>
+      <option value="">Select a project...</option>
+      <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option>
+    </select>
     <label for="reviewer">Reviewer</label>
-    <select ngModel #reviewer="ngModel" class="form-control" name="reviewer" id="reviewer" required>
-      <option value="">Select a reviewer..</option>
+    <select ngModel #reviewer="ngModel" class="form-control" name="reviewerId" id="reviewerId" required>
+      <option value="">Select a {{ project.value ? "reviewer" : "project" }}...</option>
       <option *ngFor="let reviewer of reviewers" [value]="reviewer.id">{{ reviewer.fullname }}</option>
     </select>
     <div class="alert alert-danger" *ngIf="reviewer.touched && !reviewer.valid">
       <div *ngIf="reviewer.errors.required">Reviewer is required.</div>
     </div>
     <label for="assignee">Assignee</label>
-    <select ngModel #assignee="ngModel" class="form-control" name="assignee" id="assignee" required>
-      <option value="">Select an assignee..</option>
+    <select ngModel #assignee="ngModel" class="form-control" name="assigneeId" id="assigneeId" required>
+      <option value="">Select {{ project.value ? "an assignee" : "a project" }}...</option>
       <option *ngFor="let assignee of assignees" [value]="assignee.id">{{ assignee.fullname }}</option>
     </select>
     <div class="alert alert-danger" *ngIf="assignee.touched && !assignee.valid">

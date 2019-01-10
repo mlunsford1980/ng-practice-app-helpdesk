@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Name } from '../issues/name.model';
 import { NgForm } from '@angular/forms';
+import { ProjectsService } from '../services/projects.service';
+import { IssuesService } from '../services/issues.service';
+import { Name } from '../models/name.model';
+import { Project } from '../models/project.model';
 
 @Component({
   selector: 'app-create-issue',
@@ -8,6 +11,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./create-issue.component.css']
 })
 export class CreateIssueComponent implements OnInit {
+  projects: Project[] = [];
   reviewers: Name[];
   assignees: Name[];
   wasSubmited = false;
@@ -17,24 +21,46 @@ export class CreateIssueComponent implements OnInit {
     return this.form.pristine || this.wasSubmited;
   }
 
-  constructor() {
-    this.reviewers = [
-      { id: 1, surname: 'Doe', givenName: 'John', fullname: 'Doe, John' },
-      { id: 2, surname: 'Smith', givenName: 'Jane', fullname: 'Smith, Jane' },
-    ];
+  constructor(private issuesService: IssuesService, private projectsService: ProjectsService) { }
 
-    this.assignees = [
-      { id: 1, surname: 'Doe', givenName: 'John', fullname: 'Doe, John' },
-      { id: 2, surname: 'Smith', givenName: 'Jane', fullname: 'Smith, Jane' },
-    ];
+  loadProjectData(projectId: number) {
+    this.getAssignees(projectId);
+    this.getReviewers(projectId);
+  }
+
+  getProjects() {
+    this.projectsService.getProjects().subscribe(
+      response => {
+        this.projects = response.body;
+      },
+      error => console.log(error));
+  }
+
+  getReviewers(programId: number) {
+    this.projectsService.getReviewers(programId).subscribe(
+      response => {
+        this.reviewers = response.body;
+      },
+      error => console.log(error));
+  }
+
+  getAssignees(programId: number) {
+    this.projectsService.getAssignees(programId).subscribe(
+      response => {
+        this.assignees = response.body;
+      },
+      error => console.log(error));
   }
 
   submit(f) {
     console.log(f);
+    this.issuesService.postIssue(f.value).subscribe(
+      response => console.log(response));
+    
     this.wasSubmited = true;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.getProjects();
   }
-
 }

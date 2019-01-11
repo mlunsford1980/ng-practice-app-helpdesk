@@ -10,6 +10,8 @@ import { ProjectsService } from '../services/projects.service';
   styleUrls: ['./edit-issue.component.css']
 })
 export class EditIssueComponent implements OnInit {
+  constructor(private projectsService: ProjectsService) { }
+
   form: FormGroup = new FormGroup({
     description: new FormControl("", [Validators.required]),
     project: new FormControl("", [Validators.required]),
@@ -20,8 +22,6 @@ export class EditIssueComponent implements OnInit {
   projects: Project[] = [];
   reviewers: Name[];
   assignees: Name[];
-
-  constructor(private projectsService: ProjectsService) { }
 
   get description() {
     return this.form.get('description');
@@ -43,10 +43,31 @@ export class EditIssueComponent implements OnInit {
     return this.form.get('dueDate');
   }
 
-  ngOnInit() {
+  loadProjects() {
     this.projectsService.getProjects().subscribe(
       response => this.projects = response.body,
       error => console.log(error));
   }
 
+  projectSelected(projectId: number) {
+    this.loadReviewers(projectId);
+    this.loadAssignees(projectId);
+  }
+
+  loadReviewers(projectId: number) {
+    this.projectsService.getReviewers(projectId).subscribe(
+      response => this.reviewers = response.body,
+      error => console.log(error));
+  }
+
+  loadAssignees(projectId: number) {
+    this.projectsService.getAssignees(projectId).subscribe(
+      response => this.assignees = response.body,
+      error => console.log(error));
+  }
+
+  ngOnInit() {
+    this.loadProjects();
+    this.project.valueChanges.subscribe(value => this.projectSelected(value));
+  }
 }

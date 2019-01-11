@@ -1,7 +1,6 @@
 import { CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { CreateIssueComponent } from "./create-issue.component";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
 import { DialogService } from "../dialog/dialog.component";
 
 @Injectable()

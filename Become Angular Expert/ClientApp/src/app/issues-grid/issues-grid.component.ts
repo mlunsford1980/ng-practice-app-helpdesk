@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { IssuesService } from '../services/issues.service';
 import { Issue } from '../models/issue.model';
 import { Page } from '../models/page.model';
+import { NgbPanel, NgbPanelContent, NgbPanelTitle, NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'issues-grid',
@@ -21,6 +22,7 @@ export class IssuesGridComponent implements OnInit {
   }
 
   loadPage(pageNumber: number) {
+    this.pageNumber = pageNumber;
     this.issuesService.getIssues(pageNumber)
       .subscribe(result => {
         let totalPagesHeader = result.headers.get('x-total-pages');

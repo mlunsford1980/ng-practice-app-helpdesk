@@ -1,0 +1,36 @@
+<h1>New Issue</h1>
+<form [formGroup]="form" class="form">
+  <div class="form-group">
+    <label for="project">Project</label>
+    <select formControlName="project" class="form-control" name="projectId" id="projectId" required>
+      <option value="">Select a project...</option>
+      <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option>
+    </select>
+    <label for="reviewer">Reviewer</label>
+    <select formControlName="reviewer" class="form-control" name="reviewerId" id="reviewerId" required>
+      <option value="">Select a {{ project.value ? "reviewer" : "project" }}...</option>
+      <option *ngFor="let reviewer of reviewers" [value]="reviewer.id">{{ reviewer.fullname }}</option>
+    </select>
+    <div class="alert alert-danger" *ngIf="reviewer.touched && !reviewer.valid">
+      <div *ngIf="reviewer.errors.required">Reviewer is required.</div>
+    </div>
+    <label for="assignee">Assignee</label>
+    <select formControlName="assignee" class="form-control" name="assigneeId" id="assigneeId" required>
+      <option value="">Select {{ project.value ? "an assignee" : "a project" }}...</option>
+      <option *ngFor="let assignee of assignees" [value]="assignee.id">{{ assignee.fullname }}</option>
+    </select>
+    <div class="alert alert-danger" *ngIf="assignee.touched && !assignee.valid">
+      <div *ngIf="reviewer.errors.required">Assignee is required.</div>
+    </div>
+    <label for="dueDate">Due Date</label>
+    <input class="form-control" type="date" name="dueDate" id="dueDate" />
+    <label for="Description">Description</label>
+    <textarea formControlName="description" class="form-control" name="description" id="description" required></textarea>
+    <div class="alert alert-danger" *ngIf="description.touched && !description.valid">
+      <div *ngIf="description.errors.required">Description is required.</div>
+    </div>
+    <button class="btn btn-primary" >Submit</button>
+  </div>
+
+  <div>{{ project | json }}</div>
+</form>

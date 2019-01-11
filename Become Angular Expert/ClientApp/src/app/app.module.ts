@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -16,6 +16,7 @@ import { CanDeactivateCreateIssue } from './create-issue/can-deactivate-create-i
 import { DialogComponent } from './dialog/dialog.component';
 import { DialogService } from './dialog/dialog.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EditIssueComponent } from './edit-issue/edit-issue.component';
 
 @NgModule({
   declarations: [
@@ -27,18 +28,21 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     IssuesComponent,
     IssuesGridComponent,
     CreateIssueComponent,
-    DialogComponent
+    DialogComponent,
+    EditIssueComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'issues', component: IssuesComponent },
       { path: 'issues/create', component: CreateIssueComponent, canDeactivate: [CanDeactivateCreateIssue] },
+      { path: 'issues/edit', component: EditIssueComponent },
     ]),
     NgbModule
   ],

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Name } from '../models/name.model';
-import { Project } from '../models/project.model';
-import { ProjectsService } from '../services/projects.service';
+import { Name } from '../shared/name.model';
+import { Project } from '../shared/project.model';
+import { ProjectsService } from '../shared/projects.service';
+import { DateValidators } from '../shared/date.validators';
 
 @Component({
   selector: 'app-edit-issue',
@@ -17,7 +18,7 @@ export class EditIssueComponent implements OnInit {
     project: new FormControl("", [Validators.required]),
     reviewer: new FormControl("", [Validators.required]),
     assignee: new FormControl("", [Validators.required]),
-    dueDate: new FormControl(),
+    dueDate: new FormControl('', [DateValidators.mustBeFuture]),
   });
   projects: Project[] = [];
   reviewers: Name[];

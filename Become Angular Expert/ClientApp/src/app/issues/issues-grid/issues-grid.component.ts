@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IssuesService } from '../services/issues.service';
-import { Issue } from '../models/issue.model';
-import { Page } from '../models/page.model';
-import { NgbPanel, NgbPanelContent, NgbPanelTitle, NgbAlert } from '@ng-bootstrap/ng-bootstrap';
+import { IssuesService } from '../shared/issues.service';
+import { Issue } from '../shared/issue.model';
+import { Page } from './page.model';
+import { NgbPanel, NgbPanelContent, NgbPanelTitle, NgbAlert, NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'issues-grid',
@@ -16,6 +16,7 @@ export class IssuesGridComponent implements OnInit {
   issues: Issue[];
   pages: Page[] = [];
   pageNumber: number;
+  public isCollapsed = false;
 
   constructor(private issuesService: IssuesService) {
     this.loadPage(1);
@@ -35,6 +36,10 @@ export class IssuesGridComponent implements OnInit {
         }
       },
       error => console.error(error));
+  }
+
+  toggleCollapsed() {
+    this.isCollapsed = !this.isCollapsed;
   }
 
   ngOnInit() {

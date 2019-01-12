@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ProjectsService } from '../services/projects.service';
-import { IssuesService } from '../services/issues.service';
-import { Name } from '../models/name.model';
-import { Project } from '../models/project.model';
+import { ProjectsService } from '../shared/projects.service';
+import { IssuesService } from '../shared/issues.service';
+import { Name } from '../shared/name.model';
+import { Project } from '../shared/project.model';
 
 @Component({
   selector: 'app-create-issue',
@@ -30,25 +30,19 @@ export class CreateIssueComponent implements OnInit {
 
   getProjects() {
     this.projectsService.getProjects().subscribe(
-      response => {
-        this.projects = response.body;
-      },
+      response => this.projects = response.body,
       error => console.log(error));
   }
 
   getReviewers(programId: number) {
     this.projectsService.getReviewers(programId).subscribe(
-      response => {
-        this.reviewers = response.body;
-      },
+      response => this.reviewers = response.body,
       error => console.log(error));
   }
 
   getAssignees(programId: number) {
     this.projectsService.getAssignees(programId).subscribe(
-      response => {
-        this.assignees = response.body;
-      },
+      response => this.assignees = response.body,
       error => console.log(error));
   }
 

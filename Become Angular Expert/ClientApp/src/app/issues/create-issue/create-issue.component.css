@@ -1,0 +1,15 @@
+.card {
+  width: 60%;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card .form-control {
+  margin-bottom: 1rem;
+}
+
+label {
+  font-weight: bold;
+}

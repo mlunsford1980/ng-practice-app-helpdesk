@@ -1,0 +1,7 @@
+.card {
+  margin-bottom: 2rem;
+}
+
+.table-striped-blue tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 148, 255, 0.08);
+}

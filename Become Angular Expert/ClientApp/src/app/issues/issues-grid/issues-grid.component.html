@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-header bg-primary text-white">
+    <button class="btn btn-link text-white" (click)="toggleCollapsed()"><h5>{{ title }}</h5></button>
+  </div>
+  <div class="card-body" [ngbCollapse]="isCollapsed">
+    <table class="table table-striped-blue" *ngIf="issues">
+      <thead>
+        <tr>
+          <th>Assignee</th>
+          <th>Reviewer</th>
+          <th>Description</th>
+          <th>DueDate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="!issues">
+          <td colspan="4">There are no issues to display.</td>
+        </tr>
+        <tr *ngFor="let issue of issues">
+          <td><a [routerLink]="['/issues/edit']">{{ issue.assignee.fullname }}</a></td>
+          <td>{{ issue.reviewer.fullname }}</td>
+          <td>{{ issue.description }}</td>
+          <td>{{ issue.dueDate | date:'shortDate' }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination float-right">
+        <li class="page-item"><a class="page-link" (click)="loadPage(pageNumber - 1)">Previous</a></li>
+        <li *ngFor="let page of pages" class="page-item" [class.active]="page.isCurrent"><a class="page-link" (click)="loadPage(page.pageNumber)">{{ page.pageNumber }}</a></li>
+        <li class="page-item"><a class="page-link" (click)="loadPage(pageNumber + 1)">Next</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>

@@ -13,8 +13,15 @@ export class IssuesService {
     return this.http.get<Issue[]>(`${this.baseUrl}api/issues/?pageNumber=${pageNumber}`, { observe: 'response' });
   }
 
+  getIssue(id: number) {
+    return this.http.get<Issue>(`${this.baseUrl}api/issues/${id}`, { observe: 'response' });
+  }
+
+  putIssue(id: number) {
+    return this.http.get(`${this.baseUrl}api/issues/${id}`, { observe: 'response' });
+  }
+
   postIssue(issue: Issue) {
-    console.log("Saving issues...");
     return this.http.post<Issue>(`${this.baseUrl}api/issues`, issue, { observe: 'response' });
   }
 }

@@ -15,6 +15,7 @@ import { DialogService } from './dialog/dialog.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditIssueComponent } from './issues/edit-issue/edit-issue.component';
 import { DateValidators } from './issues/shared/date.validators';
+import { IssueDetailComponent } from './issues/issue-detail/issue-detail.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DateValidators } from './issues/shared/date.validators';
     CreateIssueComponent,
     DialogComponent,
     EditIssueComponent,
-    DateValidators
+    DateValidators,
+    IssueDetailComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -37,6 +39,7 @@ import { DateValidators } from './issues/shared/date.validators';
       { path: 'issues', component: IssuesComponent },
       { path: 'issues/create', component: CreateIssueComponent, canDeactivate: [CanDeactivateCreateIssue] },
       { path: 'issues/edit', component: EditIssueComponent },
+      { path: 'issues/:id', component: IssueDetailComponent },
     ]),
     NgbModule
   ],

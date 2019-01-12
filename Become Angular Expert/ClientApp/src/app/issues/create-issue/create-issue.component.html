@@ -27,16 +27,12 @@
         <label for="dueDate">Due Date</label>
         <input ngModel mustBeFuture #dueDate="ngModel" class="form-control" type="date" name="dueDate" id="dueDate" asdf />
         <div class="alert alert-danger" *ngIf="dueDate.touched && !dueDate.valid">
-          asdf
           <div *ngIf="dueDate.errors.mustBeFuture">Due Date {{ dueDate.errors.mustBeFuture.message }}.</div>
         </div>
         <label for="Description">Description</label>
         <textarea ngModel #description="ngModel" class="form-control" name="description" id="description" required></textarea>
         <div class="alert alert-danger" *ngIf="description.touched && !description.valid">
           <div *ngIf="description.errors.required">Description is required.</div>
-        </div>
-        <div class="alert alert-danger" *ngIf="name.touched && !name.valid">
-          <div *ngIf="name.errors.forbiddenName">Name cannot match {{ name.errors.forbiddenName.value }}.</div>
         </div>
         <button class="btn btn-primary" [disabled]="f.invalid">Submit</button>
       </div>

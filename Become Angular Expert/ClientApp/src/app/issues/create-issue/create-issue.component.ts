@@ -4,6 +4,7 @@ import { ProjectsService } from '../shared/projects.service';
 import { IssuesService } from '../shared/issues.service';
 import { Name } from '../shared/name.model';
 import { Project } from '../shared/project.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-issue',
@@ -21,7 +22,9 @@ export class CreateIssueComponent implements OnInit {
     return this.form.pristine || this.wasSubmited;
   }
 
-  constructor(private issuesService: IssuesService, private projectsService: ProjectsService) { }
+  constructor(private issuesService: IssuesService,
+    private projectsService: ProjectsService,
+    private router: Router) { }
 
   loadProjectData(projectId: number) {
     this.getAssignees(projectId);
@@ -49,7 +52,11 @@ export class CreateIssueComponent implements OnInit {
   submit(f) {
     console.log(f);
     this.issuesService.postIssue(f.value).subscribe(
-      response => console.log(response));
+      response => {
+        console.log(response);
+        let createdIssueId = +response.headers.get('x-created-issue-id');
+        this.router.navigate(['/issues', createdIssueId]);
+      });
     
     this.wasSubmited = true;
   }

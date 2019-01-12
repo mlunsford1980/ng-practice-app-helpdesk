@@ -8,10 +8,10 @@ import { Component} from '@angular/core';
 export class IssuesComponent {
   assignedGrid = {
     title: "Assigned to me",
-    pageSize: 5
+    pageSize: 10
   };
   reviewedGrid = {
-    title: "Reviewed by me",
+    title: "Created by me",
     pageSize: 5
   };
 }

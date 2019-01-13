@@ -6,6 +6,8 @@
     <table class="table table-striped-blue" *ngIf="issues">
       <thead>
         <tr>
+          <th>&nbsp;</th>
+          <th>#</th>
           <th>Assignee</th>
           <th>Reviewer</th>
           <th>Description</th>
@@ -17,7 +19,9 @@
           <td colspan="4">There are no issues to display.</td>
         </tr>
         <tr *ngFor="let issue of issues">
-          <td><a [routerLink]="['/issues/edit']">{{ issue.assignee.fullname }}</a></td>
+          <th><a [routerLink]="['/issues', issue.id, 'edit']"><img src="../../../assets/open-iconic-master/svg/pencil.svg" alt="edit" id="edit-icon" /></a></th>
+          <th><a [routerLink]="['/issues', issue.id]">{{ issue.id }}</a></th>
+          <td>{{ issue.assignee.fullname }}</td>
           <td>{{ issue.reviewer.fullname }}</td>
           <td>{{ issue.description }}</td>
           <td>{{ issue.dueDate | date:'shortDate' }}</td>

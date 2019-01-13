@@ -53,7 +53,6 @@ export class CreateIssueComponent implements OnInit {
     console.log(f);
     this.issuesService.postIssue(f.value).subscribe(
       response => {
-        console.log(response);
         let createdIssueId = +response.headers.get('x-created-issue-id');
         this.router.navigate(['/issues', createdIssueId]);
       });

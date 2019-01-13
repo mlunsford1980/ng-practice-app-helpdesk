@@ -38,7 +38,7 @@ import { IssueDetailComponent } from './issues/issue-detail/issue-detail.compone
       { path: '', component: IssuesComponent, pathMatch: 'full' },
       { path: 'issues', component: IssuesComponent },
       { path: 'issues/create', component: CreateIssueComponent, canDeactivate: [CanDeactivateCreateIssue] },
-      { path: 'issues/edit', component: EditIssueComponent },
+      { path: 'issues/:id/edit', component: EditIssueComponent },
       { path: 'issues/:id', component: IssueDetailComponent },
     ]),
     NgbModule

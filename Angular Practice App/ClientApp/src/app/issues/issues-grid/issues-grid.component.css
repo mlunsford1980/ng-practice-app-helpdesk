@@ -5,3 +5,9 @@
 .table-striped-blue tbody tr:nth-of-type(odd) {
   background-color: rgba(0, 148, 255, 0.08);
 }
+
+#edit-icon {
+  width: 1rem;
+  height: 1rem;
+  color: blue;
+}

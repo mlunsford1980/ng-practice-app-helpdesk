@@ -1,5 +1,6 @@
 ﻿using Become_Angular_Expert.Models;
 using System;
+using System.Linq;
 
 namespace Become_Angular_Expert
 {
@@ -24,6 +25,14 @@ namespace Become_Angular_Expert
             var rng = new Random();
 
             return new Name(Surnames[rng.Next(Surnames.Length)], GivenNames[rng.Next(GivenNames.Length)], id);
+        }
+
+        public static Project[] GetProjects()
+        {
+            var projectId = 1;
+            var projects = ProjectNames.Select(p => new Project { Id = projectId++, Name = p });
+
+            return projects.ToArray();
         }
     }
 }

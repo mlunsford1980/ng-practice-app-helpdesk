@@ -21,8 +21,11 @@ namespace Become_Angular_Expert.Controllers
         public IActionResult Get()
         {
             var rng = new Random();
+            var projects = FakeDataHelper.GetProjects();
             var issues = Enumerable.Range(0, 20).Select(index => new Issue
             {
+                Id = index,
+                Project = projects[rng.Next(0, projects.Length - 1)],
                 Reviewer = FakeDataHelper.GetRandomName(index),
                 Assignee = FakeDataHelper.GetRandomName(index),
                 DueDate = index % 3 == 0 ? (DateTime?)DateTime.Now.AddDays(rng.Next(30)) : null,
@@ -38,12 +41,11 @@ namespace Become_Angular_Expert.Controllers
         public IActionResult Get(int id)
         {
             var rng = new Random();
-            var projectId = 1;
-            var projects = FakeDataHelper.ProjectNames.Select(p => new Project { Id = projectId++, Name = p });
+            var projects = FakeDataHelper.GetProjects();
             var issue = new Issue
             {
                 Id = id,
-                Project = projects.First(),
+                Project = projects[rng.Next(0, projects.Length - 1)],
                 Reviewer = FakeDataHelper.GetRandomName(id),
                 Assignee = FakeDataHelper.GetRandomName(id),
                 DueDate = id % 3 == 0 ? (DateTime?)DateTime.Now.AddDays(rng.Next(30)) : null,

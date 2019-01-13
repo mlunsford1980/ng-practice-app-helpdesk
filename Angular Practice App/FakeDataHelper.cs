@@ -1,8 +1,8 @@
-﻿using AngularPracticeApp.Models;
+﻿using Become_Angular_Expert.Models;
 using System;
 using System.Linq;
 
-namespace AngularPracticeApp
+namespace Become_Angular_Expert
 {
     public static class FakeDataHelper
     {

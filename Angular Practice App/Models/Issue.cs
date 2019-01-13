@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AngularPracticeApp.Models
+namespace Become_Angular_Expert.Models
 {
     public class Issue
     {

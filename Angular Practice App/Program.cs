@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace AngularPracticeApp
+namespace Become_Angular_Expert
 {
     public class Program
     {

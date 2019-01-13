@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AngularPracticeApp.Models
+namespace Become_Angular_Expert.Models
 {
     public class Project
     {

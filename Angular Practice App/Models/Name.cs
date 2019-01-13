@@ -1,4 +1,4 @@
-﻿namespace Become_Angular_Expert.Models
+﻿namespace AngularPracticeApp.Models
 {
     public class Name
     {

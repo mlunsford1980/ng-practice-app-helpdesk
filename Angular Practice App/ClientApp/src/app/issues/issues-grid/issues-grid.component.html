@@ -1,6 +1,7 @@
 <div class="card">
   <div class="card-header bg-primary text-white">
     <button class="btn btn-link text-white" (click)="toggleCollapsed()"><h5>{{ title }}</h5></button>
+    <button class="btn btn-link float-right text-white oi {{isCollapsed ? 'oi-chevron-top' : 'oi-chevron-bottom'}}"  (click)="toggleCollapsed()" aria-hidden="true"></button>
   </div>
   <div class="card-body" [ngbCollapse]="isCollapsed">
     <table class="table table-striped-blue" *ngIf="issues">
@@ -19,7 +20,7 @@
           <td colspan="4">There are no issues to display.</td>
         </tr>
         <tr *ngFor="let issue of issues">
-          <th><a [routerLink]="['/issues', issue.id, 'edit']"><img src="../../../assets/open-iconic-master/svg/pencil.svg" alt="edit" id="edit-icon" /></a></th>
+          <th><a [routerLink]="['/issues', issue.id, 'edit']"><span class="oi oi-pencil" title="icon name" aria-hidden="true"></span></a></th>
           <th><a [routerLink]="['/issues', issue.id]">{{ issue.id }}</a></th>
           <td>{{ issue.assignee.fullname }}</td>
           <td>{{ issue.reviewer.fullname }}</td>

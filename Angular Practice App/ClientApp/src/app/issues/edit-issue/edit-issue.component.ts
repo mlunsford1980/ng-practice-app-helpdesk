@@ -23,6 +23,7 @@ export class EditIssueComponent implements OnInit {
     reviewer: new FormControl("", [Validators.required]),
     assignee: new FormControl("", [Validators.required]),
     dueDate: new FormControl('', [DateValidators.mustBeFuture]),
+    comment: new FormControl(''),
   });
   projects: Project[] = [];
   reviewers: Name[];
@@ -46,6 +47,10 @@ export class EditIssueComponent implements OnInit {
 
   get dueDate() {
     return this.form.get('dueDate');
+  }
+
+  get comment() {
+    return this.form.get('comment');
   }
 
   loadProjects() {

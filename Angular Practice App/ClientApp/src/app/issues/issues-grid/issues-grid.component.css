@@ -11,3 +11,7 @@
   height: 1rem;
   color: blue;
 }
+
+button.btn-link:hover {
+  text-decoration: none;
+}

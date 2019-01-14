@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AngularPracticeApp.Models;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Become_Angular_Expert.Models
 {
@@ -13,5 +16,6 @@ namespace Become_Angular_Expert.Models
         public Name Assignee { get; set; }
         public string Description { get; set; }
         public DateTime? DueDate { get; set; }
+        public IList<Comment> Comments { get; set; }
     }
 }

@@ -36,9 +36,10 @@
         <div class="alert alert-danger" *ngIf="description.touched && !description.valid">
           <div *ngIf="description.errors.required">Description is required.</div>
         </div>
+        <label for="comment">Issue Comment</label>
+        <textarea formControlName="comment" class="form-control" name="comment" id="comment"></textarea>
         <button class="btn btn-primary" [disabled]="form.invalid">Submit</button>
       </div>
     </form>
   </div>
 </div>
-{{ issue | json }}

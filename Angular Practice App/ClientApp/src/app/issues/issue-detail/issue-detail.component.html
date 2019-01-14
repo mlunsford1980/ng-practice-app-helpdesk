@@ -1,15 +1,26 @@
 <div class="card">
   <div class="card-header bg-primary text-white">{{ title }}{{ issue.id }}</div>
   <div class="card-body">
-    <label>Project</label>
+    <div class="field-name">Project</div>
     <div>{{ issue.project.name }}</div>
-    <label>Reviewer</label>
+    <div class="field-name">Reviewer</div>
     <div>{{ issue.reviewer.fullname }}</div>
-    <label>Assignee</label>
+    <div class="field-name">Assignee</div>
     <div>{{ issue.assignee.fullname }}</div>
-    <label>Due Date</label>
-    <div>{{ issue.dueDate }}</div>
-    <label>Description</label>
+    <div class="field-name">Due Date</div>
+    <div>{{ issue.dueDate | date }}</div>
+    <div class="field-name">Description</div>
     <div>{{ issue.description }}</div>
+    <div class="card" *ngIf="issue.comments">
+      <div class="card-header bg-secondary text-white">Comments</div>
+      <div class="card-body">
+        <div class="card" *ngFor="let comment of issue.comments">
+          <div class="card-body">
+            <small class="text-muted d-block">Written by {{ comment.writtenBy.fullname }} on {{ comment.writtenDate | date }}</small>
+            {{ comment.content }}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

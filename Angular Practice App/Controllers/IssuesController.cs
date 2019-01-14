@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Linq;
+using AngularPracticeApp.Models;
 using Become_Angular_Expert.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Become_Angular_Expert.Controllers
+namespace AngularPracticeApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -30,6 +31,7 @@ namespace Become_Angular_Expert.Controllers
                 Assignee = FakeDataHelper.GetRandomName(index),
                 DueDate = index % 3 == 0 ? (DateTime?)DateTime.Now.AddDays(rng.Next(30)) : null,
                 Description = $"{FakeDataHelper.DummyDescription.Substring(0, rng.Next(40, 80))}...",
+                Comments = FakeDataHelper.GetComments(rng.Next(0, 8)),
             });
 
             Request.HttpContext.Response.Headers.Add("x-total-pages", "5");
@@ -50,6 +52,7 @@ namespace Become_Angular_Expert.Controllers
                 Assignee = FakeDataHelper.GetRandomName(id),
                 DueDate = id % 3 == 0 ? (DateTime?)DateTime.Now.AddDays(rng.Next(30)) : null,
                 Description = $"{FakeDataHelper.DummyDescription.Substring(0, rng.Next(40, 80))}...",
+                Comments = FakeDataHelper.GetComments(rng.Next(0, 8)),
             };
 
             return Ok(issue);

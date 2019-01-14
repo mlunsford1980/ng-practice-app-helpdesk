@@ -28,6 +28,7 @@ export class IssuesGridComponent implements OnInit {
       .subscribe(result => {
         let totalPagesHeader = result.headers.get('x-total-pages');
         this.issues = result.body.slice(0, this.pageSize);
+        this.issues.sort(this.issuesSort);
         this.pages = [];
 
         let totalPages = parseInt(totalPagesHeader);
@@ -41,6 +42,15 @@ export class IssuesGridComponent implements OnInit {
   toggleCollapsed() {
     this.isCollapsed = !this.isCollapsed;
   }
+
+  private issuesSort = (a: any, b: any) => {
+    if (a.id < b.id)
+      return 1;
+    else if (a.id > b.id)
+      return -1;
+    else
+      return 0;
+  };
 
   ngOnInit() {
   }

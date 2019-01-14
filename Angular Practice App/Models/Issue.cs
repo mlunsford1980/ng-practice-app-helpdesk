@@ -1,9 +1,7 @@
-﻿using AngularPracticeApp.Models;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 
-namespace Become_Angular_Expert.Models
+namespace AngularPracticeApp.Models
 {
     public class Issue
     {

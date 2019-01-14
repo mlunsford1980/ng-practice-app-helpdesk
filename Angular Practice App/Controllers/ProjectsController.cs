@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Become_Angular_Expert.Models;
 using AngularPracticeApp;
+using AngularPracticeApp.Models;
 
-namespace Become_Angular_Expert.Controllers
+namespace AngularPracticeApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

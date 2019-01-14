@@ -1,5 +1,4 @@
-﻿using Become_Angular_Expert.Models;
-using System;
+﻿using System;
 
 namespace AngularPracticeApp.Models
 {

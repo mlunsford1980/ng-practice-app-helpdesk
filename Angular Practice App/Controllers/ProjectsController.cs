@@ -1,10 +1,11 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using AngularPracticeApp;
 using AngularPracticeApp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AngularPracticeApp.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProjectsController : ControllerBase

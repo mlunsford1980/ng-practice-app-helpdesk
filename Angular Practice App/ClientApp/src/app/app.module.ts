@@ -4,6 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+import { JwtModule } from '@auth0/angular-jwt';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { IssuesComponent } from './issues/issues.component';
@@ -12,10 +15,14 @@ import { CreateIssueComponent } from './issues/create-issue/create-issue.compone
 import { CanDeactivateCreateIssue } from './issues/create-issue/can-deactivate-create-issue';
 import { DialogComponent } from './dialog/dialog.component';
 import { DialogService } from './dialog/dialog.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditIssueComponent } from './issues/edit-issue/edit-issue.component';
 import { DateValidators } from './issues/shared/date.validators';
 import { IssueDetailComponent } from './issues/issue-detail/issue-detail.component';
+import { LoginComponent } from './login/login.component';
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -27,7 +34,8 @@ import { IssueDetailComponent } from './issues/issue-detail/issue-detail.compone
     DialogComponent,
     EditIssueComponent,
     DateValidators,
-    IssueDetailComponent
+    IssueDetailComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -40,8 +48,16 @@ import { IssueDetailComponent } from './issues/issue-detail/issue-detail.compone
       { path: 'issues/create', component: CreateIssueComponent, canDeactivate: [CanDeactivateCreateIssue] },
       { path: 'issues/:id/edit', component: EditIssueComponent },
       { path: 'issues/:id', component: IssueDetailComponent },
+      { path: 'login', component: LoginComponent },
     ]),
-    NgbModule
+    NgbModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:44397'],
+        blacklistedRoutes: ['loclahost:44397/api/auth/login']
+      }
+    })
   ],
   providers: [CanDeactivateCreateIssue, DialogService],
   bootstrap: [AppComponent],

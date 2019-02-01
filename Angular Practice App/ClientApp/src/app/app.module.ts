@@ -19,6 +19,7 @@ import { EditIssueComponent } from './issues/edit-issue/edit-issue.component';
 import { DateValidators } from './issues/shared/date.validators';
 import { IssueDetailComponent } from './issues/issue-detail/issue-detail.component';
 import { LoginComponent } from './login/login.component';
+import { AuthGuardService } from './shared/auth-guard.service';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -43,11 +44,11 @@ export function tokenGetter() {
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: IssuesComponent, pathMatch: 'full' },
-      { path: 'issues', component: IssuesComponent },
-      { path: 'issues/create', component: CreateIssueComponent, canDeactivate: [CanDeactivateCreateIssue] },
-      { path: 'issues/:id/edit', component: EditIssueComponent },
-      { path: 'issues/:id', component: IssueDetailComponent },
+      { path: '', component: IssuesComponent, pathMatch: 'full', canActivate: [AuthGuardService] },
+      { path: 'issues', component: IssuesComponent, canActivate: [AuthGuardService]},
+      { path: 'issues/create', component: CreateIssueComponent, canActivate: [AuthGuardService], canDeactivate: [CanDeactivateCreateIssue] },
+      { path: 'issues/:id/edit', component: EditIssueComponent, canActivate: [AuthGuardService] },
+      { path: 'issues/:id', component: IssueDetailComponent, canActivate: [AuthGuardService] },
       { path: 'login', component: LoginComponent },
     ]),
     NgbModule,
@@ -55,7 +56,7 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter,
         whitelistedDomains: ['localhost:44397'],
-        blacklistedRoutes: ['loclahost:44397/api/auth/login']
+        blacklistedRoutes: ['localhost:44397/api/auth/login']
       }
     })
   ],
